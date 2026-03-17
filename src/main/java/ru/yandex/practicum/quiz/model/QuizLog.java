@@ -26,7 +26,8 @@ public class QuizLog implements Iterable<QuizLog.Entry> {
         if (log.size() < number) {
             log.add(new Entry(number, question));
         }
-        log.getLast().addAnswer(answer);
+       // log.getLast().addAnswer(answer);
+        log.get(log.size() - 1).addAnswer(answer);
     }
 
     // реализация метода iterator интерфейса Iterable
