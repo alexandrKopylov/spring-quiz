@@ -1,3 +1,10 @@
+spring:
+  config:
+    import: "classpath:quiz/questions.yaml"
+  main:
+    log-startup-info: false
+
+
 spring-quiz:
   title: "Тест по Spring Framework"
 

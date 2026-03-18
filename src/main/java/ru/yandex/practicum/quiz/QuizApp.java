@@ -9,12 +9,18 @@ import ru.yandex.practicum.quiz.model.QuizLog;
 import ru.yandex.practicum.quiz.service.ConsoleUI;
 import ru.yandex.practicum.quiz.service.ReportGenerator;
 
-@ConfigurationPropertiesScan // активируем поиск @ConfigurationProperties-классов
+import lombok.extern.slf4j.Slf4j;
+import ru.yandex.practicum.quiz.config.AppConfig;
+
+
+@Slf4j
 @SpringBootApplication
 @RequiredArgsConstructor
+@ConfigurationPropertiesScan
 public class QuizApp implements CommandLineRunner {
     private final ConsoleUI ui;
     private final ReportGenerator reportGenerator;
+    private final AppConfig config;
 
     public static void main(String[] args) {
         SpringApplication.run(QuizApp.class, args);
@@ -22,6 +28,7 @@ public class QuizApp implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+        log.debug("Приложение запускается со следующей конфигурацией:\n{}", config);
         QuizLog log = ui.startQuiz();
         reportGenerator.generate(log);
     }
